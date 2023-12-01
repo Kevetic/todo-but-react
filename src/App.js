@@ -1,12 +1,8 @@
+import * as React from "react";
+import Modal from "./Components/Modal/Modal";
+
 function App() {
-  return (
-    <div
-      className="App"
-      style={{ backgroundColor: "#282c34", height: "100vh" }}
-    >
-      TEST
-    </div>
-  );
+  return <Modal />;
 }
 
 export default App;
