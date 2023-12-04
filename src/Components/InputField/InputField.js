@@ -1,4 +1,3 @@
-import * as React from "react";
 import styled from "styled-components";
 
 const InputStyles = styled.input`
@@ -24,11 +23,21 @@ const BtnStyles = styled.button`
   border-radius: 10px;
 `;
 
-const InputField = () => {
+const InputField = ({
+  userInput,
+  setUserInput,
+  updatedItems,
+  setUpdatedItems,
+  data,
+}) => {
+  const handleInput = (e) => {
+    setUpdatedItems([e, ...data]);
+  };
+
   return (
     <>
-      <InputStyles />
-      <BtnStyles>TEST</BtnStyles>
+      <InputStyles onChange={(e) => setUserInput(e.target.value)} />
+      <BtnStyles onClick={() => handleInput(userInput)}>+</BtnStyles>
     </>
   );
 };

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import RenderList from "../RenderList/RenderList";
 import InputField from "../InputField/InputField";
+import { useState, useEffect } from "react";
 
 const ListContainer = styled.div`
   border-radius: 10px;
@@ -18,8 +19,14 @@ const ListContainer = styled.div`
 const Container = styled.div`
   border-radius: 10px;
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 40%;
+`;
+
+const Header = styled.h1`
+  margin: auto;
+  text-align: center;
+  color: white;
 `;
 
 const InputContainer = styled.div`
@@ -28,13 +35,35 @@ const InputContainer = styled.div`
 `;
 
 const Modal = () => {
+  const [updatedItems, setUpdatedItems] = useState([]);
+  const [userInput, setUserInput] = useState("");
+  const [data, setData] = useState([{}]);
+  console.log("this is data:", data);
+
+  async function getData() {
+    const response = await fetch("/api");
+    const listitems = await response.json();
+    setData(listitems.todoList);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <Container>
+      <Header>Today's ToDo:</Header>
       <ListContainer>
-        <RenderList />
+        <RenderList updatedItems={updatedItems} userInput={userInput} />
       </ListContainer>
       <InputContainer>
-        <InputField />
+        <InputField
+          data={data}
+          userInput={userInput}
+          setUserInput={setUserInput}
+          updatedItems={updatedItems}
+          setUpdatedItems={setUpdatedItems}
+        />
       </InputContainer>
     </Container>
   );
