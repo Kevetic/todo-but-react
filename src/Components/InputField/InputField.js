@@ -1,31 +1,33 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const InputStyles = styled.input`
   padding: 10px;
   width: 80%;
   border-radius: 10px;
-  background: linear-gradient(
-    252deg,
-    rgba(42, 157, 186, 1) 41%,
-    rgba(47, 185, 151, 1) 100%
-  );
+  background: rgba(74, 134, 231, 0.31);
   &:focus {
     outline: none;
     box-border: 1px 1px 1px white;
   }
+  color: white;
+  font-size: 1.3rem;
 `;
 
 const BtnStyles = styled.button`
-  padding: 10px;
-  background: linear-gradient(
-    252deg,
-    rgba(42, 157, 186, 1) 41%,
-    rgba(47, 185, 151, 1) 100%
-  );
+  background: rgba(74, 134, 231, 0.31);
   color: white;
   border-radius: 10px;
   outline: none;
+  width: 10%;
+  &:disabled {
+    opacity: 0.5;
+    color: grey;
+  }
+  justify-content: center;
+  align-items: center;
+  display: flex;
 `;
 
 const Container = styled.div`
@@ -41,9 +43,9 @@ const InputField = ({
   updatedItems,
   setUpdatedItems,
 }) => {
-  const handleInput = (e) => {
+  const handleInput = async (e) => {
     let value = e.toUpperCase();
-    setUpdatedItems([value, ...updatedItems]);
+    await setUpdatedItems([value, ...updatedItems]);
   };
 
   return (
@@ -55,7 +57,7 @@ const InputField = ({
           handleInput(userInput);
         }}
       >
-        +
+        <AddCircleOutlineIcon fontSize="large" />
       </BtnStyles>
     </Container>
   );

@@ -1,20 +1,8 @@
-import * as React from "react";
+// Modal.jsx
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import RenderList from "../RenderList/RenderList";
 import InputField from "../InputField/InputField";
-import { useState, useEffect } from "react";
-
-const ListContainer = styled.div`
-  border-radius: 10px;
-  background: linear-gradient(
-    252deg,
-    rgba(42, 157, 186, 1) 41%,
-    rgba(47, 185, 151, 1) 100%
-  );
-  height: 500px;
-  width: 500px;
-  overflow: auto;
-`;
 
 const Container = styled.div`
   border-radius: 10px;
@@ -29,14 +17,18 @@ const Header = styled.h1`
   color: white;
 `;
 
-const InputContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const ListContainer = styled.div`
+  border-radius: 10px;
+  background-color: rgba(74, 134, 231, 0.31);
+  height: 600px;
+  width: 550px;
+  overflow: auto;
+  padding: 5px;
 `;
 
 const Modal = () => {
   const [updateStorage, setUpdateStorage] = useState(
-    localStorage.todos ? [...JSON.parse(localStorage.getItem("todos"))] : ""
+    localStorage.todos ? JSON.parse(localStorage.getItem("todos")) : []
   );
   const [updatedItems, setUpdatedItems] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -58,15 +50,12 @@ const Modal = () => {
           setUpdatedItems={setUpdatedItems}
         />
       </ListContainer>
-      <InputContainer>
-        <InputField
-          setUpdateStorage={setUpdateStorage}
-          userInput={userInput}
-          setUserInput={setUserInput}
-          updatedItems={updatedItems}
-          setUpdatedItems={setUpdatedItems}
-        />
-      </InputContainer>
+      <InputField
+        userInput={userInput}
+        setUserInput={setUserInput}
+        updatedItems={updatedItems}
+        setUpdatedItems={setUpdatedItems}
+      />
     </Container>
   );
 };

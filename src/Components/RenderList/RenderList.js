@@ -1,29 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-
-const randomBgColor = () => {
-  var firstGradient = Math.floor(Math.random() * 100);
-  var secondGradient = Math.floor(Math.random() * 100);
-  var deg = Math.floor(Math.random() * -240);
-  var x = Math.floor(Math.random() * 256);
-  var y = Math.floor(Math.random() * 256);
-  var z = Math.floor(Math.random() * 256);
-  var bgColor = "rgba(" + x + "," + y + "," + z + "," + 1 + ")";
-  let gradientbg =
-    "linear-gradient(" +
-    deg +
-    "deg, " +
-    bgColor +
-    " " +
-    firstGradient +
-    "%, " +
-    bgColor +
-    " " +
-    secondGradient +
-    "%)";
-
-  return gradientbg;
-};
+import CheckIcon from "@mui/icons-material/Check";
 
 const ListUL = styled.div`
   margin: 10px auto;
@@ -40,13 +17,20 @@ const ListItems = styled.div`
   list-style: none;
   font-size: 1.5rem;
   padding: 1rem;
-  border-radius: 10px;S
+  border-radius: 10px;
+  background: rgba(74, 134, 231, 0.31);
+  color: white;
+`;
+
+const ListBtn = styled.button`
+  background: transparent;
+  border: none;
 `;
 
 const RenderList = ({ updatedItems, setUpdatedItems }) => {
-  const handleDelete = (e, updatedItems) => {
+  const handleComplete = (e) => {
     let filter = updatedItems.filter((x, idx) => {
-      if (e.target.id != idx) {
+      if (e !== idx) {
         return x;
       }
     });
@@ -57,15 +41,15 @@ const RenderList = ({ updatedItems, setUpdatedItems }) => {
   return (
     <>
       <ListUL>
-        {updatedItems.map((x, i) => {
+        {updatedItems.map((x, index) => {
           return (
-            <ListItems key={i} style={{ background: `${randomBgColor()}` }}>
+            <ListItems key={index}>
               <li>{x}</li>
-              <div>
-                <button id={i} onClick={(e) => handleDelete(e, updatedItems)}>
-                  X
-                </button>
-              </div>
+              <>
+                <ListBtn index={index} onClick={() => handleComplete(index)}>
+                  <CheckIcon />
+                </ListBtn>
+              </>
             </ListItems>
           );
         })}
