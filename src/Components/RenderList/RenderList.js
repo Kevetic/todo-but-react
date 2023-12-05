@@ -25,6 +25,7 @@ const ListItems = styled.div`
 const ListBtn = styled.button`
   background: transparent;
   border: none;
+  color: #00ff00;
 `;
 
 const RenderList = ({ updatedItems, setUpdatedItems }) => {
@@ -44,10 +45,10 @@ const RenderList = ({ updatedItems, setUpdatedItems }) => {
         {updatedItems.map((x, index) => {
           return (
             <ListItems key={index}>
-              <li>{x}</li>
+              <li>{x.text}</li>
               <>
                 <ListBtn index={index} onClick={() => handleComplete(index)}>
-                  <CheckIcon />
+                  <CheckIcon fontSize="large" />
                 </ListBtn>
               </>
             </ListItems>

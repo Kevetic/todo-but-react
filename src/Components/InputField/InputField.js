@@ -4,7 +4,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const InputStyles = styled.input`
   padding: 10px;
-  width: 80%;
+  width: 85%;
   border-radius: 10px;
   background: rgba(74, 134, 231, 0.31);
   &:focus {
@@ -43,18 +43,26 @@ const InputField = ({
   updatedItems,
   setUpdatedItems,
 }) => {
-  const handleInput = async (e) => {
+  const handleAdd = async (e) => {
     let value = e.toUpperCase();
     await setUpdatedItems([value, ...updatedItems]);
+    await setUserInput("");
+  };
+
+  const handleInputField = (e) => {
+    setUserInput(e);
   };
 
   return (
     <Container>
-      <InputStyles onChange={(e) => setUserInput(e.target.value)} />
+      <InputStyles
+        value={userInput}
+        onChange={(e) => handleInputField(e.target.value)}
+      />
       <BtnStyles
-        disabled={userInput.length === 0}
+        disabled={!userInput}
         onClick={() => {
-          handleInput(userInput);
+          handleAdd(userInput);
         }}
       >
         <AddCircleOutlineIcon fontSize="large" />
