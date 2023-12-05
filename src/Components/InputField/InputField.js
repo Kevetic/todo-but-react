@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const InputStyles = styled.input`
@@ -9,6 +10,10 @@ const InputStyles = styled.input`
     rgba(42, 157, 186, 1) 41%,
     rgba(47, 185, 151, 1) 100%
   );
+  &:focus {
+    outline: none;
+    box-border: 1px 1px 1px white;
+  }
 `;
 
 const BtnStyles = styled.button`
@@ -19,8 +24,15 @@ const BtnStyles = styled.button`
     rgba(47, 185, 151, 1) 100%
   );
   color: white;
-  box-shadow: 1px 1px 1px white;
   border-radius: 10px;
+  outline: none;
+`;
+
+const Container = styled.div`
+  display: flex;
+  margin: 5px;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 const InputField = ({
@@ -28,17 +40,24 @@ const InputField = ({
   setUserInput,
   updatedItems,
   setUpdatedItems,
-  data,
 }) => {
   const handleInput = (e) => {
-    setUpdatedItems([e, ...data]);
+    let value = e.toUpperCase();
+    setUpdatedItems([value, ...updatedItems]);
   };
 
   return (
-    <>
+    <Container>
       <InputStyles onChange={(e) => setUserInput(e.target.value)} />
-      <BtnStyles onClick={() => handleInput(userInput)}>+</BtnStyles>
-    </>
+      <BtnStyles
+        disabled={userInput.length === 0}
+        onClick={() => {
+          handleInput(userInput);
+        }}
+      >
+        +
+      </BtnStyles>
+    </Container>
   );
 };
 

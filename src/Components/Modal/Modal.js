@@ -35,30 +35,32 @@ const InputContainer = styled.div`
 `;
 
 const Modal = () => {
+  const [updateStorage, setUpdateStorage] = useState(
+    localStorage.todos ? [...JSON.parse(localStorage.getItem("todos"))] : ""
+  );
   const [updatedItems, setUpdatedItems] = useState([]);
   const [userInput, setUserInput] = useState("");
-  const [data, setData] = useState([{}]);
-  console.log("this is data:", data);
-
-  async function getData() {
-    const response = await fetch("/api");
-    const listitems = await response.json();
-    setData(listitems.todoList);
-  }
 
   useEffect(() => {
-    getData();
-  }, []);
+    setUpdatedItems([...updateStorage]);
+  }, [updateStorage]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(updatedItems));
+  }, [updatedItems]);
 
   return (
     <Container>
       <Header>Today's ToDo:</Header>
       <ListContainer>
-        <RenderList updatedItems={updatedItems} userInput={userInput} />
+        <RenderList
+          updatedItems={updatedItems}
+          setUpdatedItems={setUpdatedItems}
+        />
       </ListContainer>
       <InputContainer>
         <InputField
-          data={data}
+          setUpdateStorage={setUpdateStorage}
           userInput={userInput}
           setUserInput={setUserInput}
           updatedItems={updatedItems}
