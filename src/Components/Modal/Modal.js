@@ -6,6 +6,11 @@ import InputField from "../InputField/InputField";
 
 const Container = styled.div`
   border-radius: 10px;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Header = styled.h1`
@@ -22,8 +27,8 @@ const ListContainer = styled.div`
   overflow: auto;
   padding: 5px;
   @media (max-width: 600px) {
-    height: 400px;
-    width: 350px;
+    height: 350px;
+    width: 90%;
   }
 `;
 

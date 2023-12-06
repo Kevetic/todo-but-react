@@ -27,6 +27,9 @@ const BtnStyles = styled.button`
   justify-content: center;
   align-items: center;
   display: flex;
+  @media (max-width: 600px) {
+    width: 20%;
+  }
 `;
 
 const Container = styled.div`
@@ -34,6 +37,10 @@ const Container = styled.div`
   margin: 5px;
   width: 100%;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    width: 80%;
+    gap: 5%;
+  }
 `;
 
 const InputField = ({
