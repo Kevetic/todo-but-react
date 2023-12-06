@@ -6,9 +6,6 @@ import InputField from "../InputField/InputField";
 
 const Container = styled.div`
   border-radius: 10px;
-  position: absolute;
-  top: 20%;
-  left: 40%;
 `;
 
 const Header = styled.h1`
@@ -24,6 +21,10 @@ const ListContainer = styled.div`
   width: 550px;
   overflow: auto;
   padding: 5px;
+  @media (max-width: 600px) {
+    height: 400px;
+    width: 350px;
+  }
 `;
 
 const Modal = () => {
