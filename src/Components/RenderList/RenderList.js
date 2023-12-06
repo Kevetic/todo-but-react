@@ -45,7 +45,7 @@ const RenderList = ({ updatedItems, setUpdatedItems }) => {
         {updatedItems.map((x, index) => {
           return (
             <ListItems key={index}>
-              <li>{x.text}</li>
+              <li>{x}</li>
               <>
                 <ListBtn index={index} onClick={() => handleComplete(index)}>
                   <CheckIcon fontSize="large" />
