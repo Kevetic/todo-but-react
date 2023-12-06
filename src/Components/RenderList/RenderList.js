@@ -28,12 +28,23 @@ const ListBtn = styled.button`
   color: #00ff00;
 `;
 
+const Typography = styled.div`
+  justify-content: space-between;
+  margin: 2px;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+`;
+
 const RenderList = ({ updatedItems, setUpdatedItems }) => {
   const handleComplete = (e) => {
     let filter = updatedItems.filter((x, idx) => {
       if (e !== idx) {
         return x;
       }
+      return;
     });
 
     setUpdatedItems([...filter]);
@@ -42,6 +53,9 @@ const RenderList = ({ updatedItems, setUpdatedItems }) => {
   return (
     <>
       <ListUL>
+        {updatedItems.length <= 0 ? (
+          <Typography>No Current Tasks..</Typography>
+        ) : null}
         {updatedItems.map((x, index) => {
           return (
             <ListItems key={index}>
