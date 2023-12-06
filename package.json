@@ -1,5 +1,6 @@
 {
   "name": "my-react-todo",
+  "homepage": "http://kevetic.github.io/todo-but-react",
   "version": "0.1.0",
   "proxy": "http://localhost:5000",
   "private": true,
@@ -22,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
